@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIVINE TOUCH - A customized shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="">
+                <img src="images/Divine touch logo.jpg" alt="Divine Touch logo" height="54px" onclick="showSection('home')">   
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#register" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Register</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#cart" class="btn btn-primary position-relative" onClick="navigateToCart()"  data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">
+                            0
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-5">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="jumbotron text-center">
+                <h1>Welcome to Divine Touch</h1>
+                <p>'A customized one-stop shop for all your celebrations'</p>
+                <img src="images/IMG_20250429_105148.png" class="img-fluid" alt="Divine touch logo">
+                <br> <br>
+                <button type="button" class="btn btn-outline-primary" onclick="showSection('products')">Explore</button>
+            </div>
+        </section>
+        
+        
+        <!-- Products Section -->
+        <section id="products" class="section">
+            <h2>Our Products</h2>
+            <div class="category-buttons mb-4">
+                <button class="btn btn-outline-primary" onclick="filterProducts('all')">All</button>
+                <button class="btn btn-outline-primary" onclick="filterProducts('accessories')">Accessories</button>
+                <button class="btn btn-outline-primary" onclick="filterProducts('gifts')">Gifts</button>
+                <button class="btn btn-outline-primary" onclick="filterProducts('return-gifts')">Return Gifts</button>
+                <button class="btn btn-outline-primary" onclick="filterProducts('tailoring-items')">Tailoring</button>
+				<input class="form-control me-2" type="search" id="searchInput" placeholder="Search products...">
+				<button class="btn btn-outline-primary me-2" onclick="searchProducts()">Search</button>
+            </div>
+            <div class="row" id="productList"></div>
+        </section>
+
+        <!-- Shopping Cart Section -->
+        <section id="cart" class="section">
+            <h2>Shopping Cart</h2>
+            <div id="cartItems"></div>
+            <div class="text-end mt-3">
+                <h4>Total: ₹<span id="cartTotal">0</span></h4>
+                <button class="btn btn-success" onclick="checkout()">Checkout</button>
+            </div>
+        </section>
+
+        <!-- Invoice Section -->
+        <section id="invoice" class="section">
+            <h2>Invoice</h2>
+            <div id="invoiceContent" class="border p-4"></div>
+            <div class="text-end mt-3">
+                <button class="btn btn-primary" onclick="printInvoice()">Print Invoice</button>
+            </div>
+        </section>
+
+        <!-- Registration Section -->
+        <section id="register" class="section">
+            <h2>User Registration</h2>
+            <form id="registrationForm" onsubmit="registerUser(event)">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="regName" placeholder="Full Name" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="regEmail" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" id="regAddress" placeholder="Address" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <input type="tel" class="form-control" id="regPhone" placeholder="Phone Number" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2>About Us</h2>
+            <p>We are your one-stop shop for all your occassions. We customize as per your needs & provide budget friendly items.
+               We provide a wide collection of items as per the customer's requirements ,including accessories for Marriage,First Holy Communion,
+                & Baptism ,Customized gifts for your loved ones and return gifts to make your occassions memorable in the hearts of 
+                all your loved ones,forever. <br>
+                <hr>
+                We specialize in:-
+                <h4>Marriage Items:</h4>
+            <ul>
+                <li>Tiaras</li>
+                <li>Floral bouquets</li>
+                <li>Nets and hair accessories</li>
+                <li>Haldi items</li>
+                <li>Party favours</li>
+                <li>Saree boxes and ring holders</li>
+                <li>Boutonnieres</li>
+                <li>Flower girl accessories</li>
+            </ul>
+            <h4>First Holy Communion items:</h4>
+            <ul>
+                <li>Candles and bouquets</li>
+                <li>Crowns and Tiaras</li>
+                <li>Net (Attached to crown or seprate)</li>
+                <li>Mittens</li>
+                <li>Bow ties</li>
+                <li>Brooches</li>
+                <li>Return gifts</li>
+            </ul>
+            <h4>Baptism Items:</h4>
+            <ul>
+                <li>Candles</li>
+                <li>Crowns</li>
+                <li>Hood wrap</li>
+                <li>Baptism dresses for boys and girls</li>
+                <li>Baby shoes</li>
+                <li>Baby mittens</li>
+                <li>Baby panties</li>
+                <li>Return gifts</li>
+            </ul>
+            <h4>Return gifts:</h4>
+            Varieties of
+            <ul>
+                <li>Candles</li>
+                <li>Fridge magnets</li>
+                <li>Rosaries</li>
+                <li>Keychains</li>
+                <li>Car and wall hangings</li>
+            </ul>
+        </p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Name" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" placeholder="Message" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="alert('Message sent!')">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light mt-5 py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Connect with us:-</h4>
+                    <br>
+                    <h6>Address:</h6><a href="https://maps.app.goo.gl/4o3Rx7t7EME6G4hw8?g_st=aw" target="_blank" rel="noopener noreferrer"> Divine Touch ,Keettickal Arcade , <br>Near Post Office ,Kallettumkara 680683 ,Irinjalakuda ,Thrissur,Kerala</a>
+                    <br><br>
+                    <div class="social-links">
+                        <a href="https://wa.me/9867546773" target="_blank" class="me-3">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://instagram.com/divinetouch_6" target="_blank" class="me-3">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="tel:9820645560">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
