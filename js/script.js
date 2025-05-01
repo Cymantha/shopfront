@@ -48,6 +48,7 @@ function loadProducts(category = 'all') {
 }
 
 function createProductCard(product) {
+    let productPriceDisplay = product.price.toFixed(2);
     const div = document.createElement('div');
     div.className = 'col-md-4 col-sm-6 product-card';
     div.innerHTML = `
@@ -56,7 +57,7 @@ function createProductCard(product) {
             <div class="card-body">
                 <h5 class="card-title">${product.name}</h5>
                 <p class="card-text">${product.description}</p>
-                <p class="card-text">₹${product.price}</p>
+                <p class="card-text">₹${productPriceDisplay}</p>
                 <button class="btn btn-primary" onclick="addToCart(${product.id})">
                     Add to Cart
                 </button>
@@ -106,7 +107,9 @@ function updateCartDisplay() {
     let total = 0;
 
     cart.forEach((item, index) => {
-        total += item.price;
+        let itemPrice = item.price;
+        let itemPriceDisplay = item.price.toFixed(2);
+        total += itemPrice;
         const itemElement = document.createElement('div');
         itemElement.className = 'card mb-3';
         itemElement.innerHTML = `
@@ -114,7 +117,7 @@ function updateCartDisplay() {
                 <img src="${item.image}" class="cart-item-image me-3" alt="${item.name}">
                 <div class="flex-grow-1">
                     <h5 class="card-title">${item.name}</h5>
-                    <p class="card-text">₹${item.price}</p>
+                    <p class="card-text">₹${itemPriceDisplay}</p>
                 </div>
                 <button class="btn btn-danger" onclick="removeFromCart(${index})">Remove</button>
             </div>

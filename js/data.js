@@ -4,7 +4,7 @@ const productData = {
             id: 1,
             name: "Customized Wooden basket chocolate hamper",
             category: "gifts",
-            price: 1000.00,
+            price: 999.90,
             image: "images/chocolate hamper.jpg",
             description: "Best marriage gift for a sweet-loving couple"
         },
@@ -20,7 +20,7 @@ const productData = {
             id: 3,
             name: "Blue boys candle,crown and brooch set",
             category: "accessories",
-            price: 850.00,
+            price: 849.99,
             image: "images/adhil name candle.jpg",
             description: "A cute set for a little cutie's first holy communion"
         },
